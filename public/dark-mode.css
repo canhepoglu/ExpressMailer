@@ -1,0 +1,75 @@
+.dark-mode-toggle {
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.4s;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s;
+}
+
+.toggle-checkbox:checked+.toggle-label {
+    background-color: #007bff;
+}
+
+.toggle-checkbox:checked+.toggle-label:before {
+    transform: translateX(26px);
+}
+
+.dark-mode-toggle {
+    position: fixed; /* Pozisyonu sabitle */
+    top: 10px; /* Üstten 10px boşluk */
+    right: 10px; /* Sağdan 10px boşluk */
+    z-index: 1000; /* Diğer içeriklerin üstünde olmasını sağla */
+}
+
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .container {
+    background-color: #333;
+}
+
+body.dark-mode h2,
+body.dark-mode .form-group label,
+body.dark-mode .required {
+    color: #fff;
+}
+
+body.dark-mode .form-group input[type="email"],
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group input[type="file"] {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .required{
+    color: rgb(255, 1, 1);
+}
