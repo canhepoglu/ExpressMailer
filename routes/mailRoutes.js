@@ -30,6 +30,7 @@ const upload = multer({
 
 router.post('/sendmail', upload.single('attachments'), async (req, res) => {
     const { toEmail, subject, message } = req.body;
+    const emailList = toEmail.split(','); // Virgülle ayrılmış e-posta adreslerini diziye çevir
 
     if (!toEmail || !subject || !message) {
         return res.status(400).json({
@@ -41,7 +42,12 @@ router.post('/sendmail', upload.single('attachments'), async (req, res) => {
     try {
         // Dosya varsa ve mail adresi, konu ve mesaj alanları doluysa, mail servisine gönder
         const attachments = req.file ? [{ filename: req.file.filename, path: req.file.path }] : []; // Dosya varsa ekler dizisine ekle
-        await mailService.sendMail(toEmail, subject, message, attachments);
+
+        // Her e-posta adresine gönderim yap
+        for (const email of emailList) {
+            await mailService.sendMail(email.trim(), subject, message, attachments);
+        }
+
         res.json({ status: 'success', message: 'Email başarıyla gönderildi.' });
     } catch (error) {
         console.error(error);

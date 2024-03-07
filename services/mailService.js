@@ -25,13 +25,16 @@ const sendMail = (toEmail, subject, message, attachments) => {
 
         // E-posta gönderme işlemi
         let transporter = nodemailer.createTransport({
+            pool: true, // SMTP bağlantı havuzu kullan
             host: 'smtp.office365.com',
             port: 587,
             secure: false,
             auth: {
                 user: config.outlookUser,
                 pass: config.outlookPass
-            }
+            },
+            maxConnections: 5, // Maksimum bağlantı sayısı
+            rateLimit: 5 // Saniyede maksimum e-posta gönderim sayısı
         });
 
         transporter.sendMail(mailOptions, (error, info) => {
