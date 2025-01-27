@@ -18,7 +18,7 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımlar�
 1. Projeyi klonlayın:
 
     ```bash
-    git clone https://github.com/canhepoglu/nodejsemail
+    git clone https://github.com/canhepoglu/ExpressMailer
     cd youremailapp
     ```
 
